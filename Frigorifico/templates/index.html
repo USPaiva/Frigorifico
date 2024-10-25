@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento Frigorifero</title>
+    <link rel="icon" href="{{ url_for('static', filename='logos/logo_bravo.png') }}">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="header">
+            <div class="left">
+                <img alt="Logo" src="{{ url_for('static', filename='logos/logo_bravo.png') }}" />
+                <span class="title">Monitoramento Frigorifero</span>
+            </div>
+            <div class="buttons">
+                <button id="connectBtn">Ligar ventilador</button>
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="left-panel">
+            <div class="data">
+                <div>
+                    <span>Umidade (g/m³)</span>
+                    <span id="humidityValue">0.00</span>
+                </div>
+                <div>
+                    <span>Temperatura (°C)</span>
+                    <span id="temperatureValue">0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="right-panel">
+            <canvas id="humidityChart"></canvas>
+            <canvas id="temperatureChart"></canvas>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

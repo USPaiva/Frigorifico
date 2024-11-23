@@ -17,10 +17,10 @@ def influxdb(msg):
                 # Cria um ponto para cada campo no JSON
             point = Point("Frigorifico") \
                 .tag("id", id) \
-                .field("Medicao", campos_json["Medicao"]) \
-                .field("Umid", campos_json["Umid"]) \
-                .field("Temp", campos_json["Temp"]) \
-                .field("CO", campos_json["CO"]) \
+                .field("Umid", campos_json["umidade"]) \
+                .field("Temp", campos_json["temperatura"]) \
+                .field("Vent1", campos_json["relay_1"]) \
+                .field("Vent2", campos_json["relay_2"]) \
                 .time(datetime.utcnow(), WritePrecision.NS)
             write_api.write(bucket=influxdb_bucket, record=point)
         print(f'Registro adicionado: {point}')
@@ -36,7 +36,7 @@ def on_connect(client, userdata, flags, rc):
     print("entrou no on_connect")
     if rc == 0:
         print('Conectado ao broker MQTT')
-        client.subscribe('TCC')
+        client.subscribe('sensores')
     else:
         print(f'Falha na conexão, código: {rc}')
 

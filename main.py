@@ -15,18 +15,9 @@ def is_receptor_running():
             pass
     return False
 
+
+
 if __name__ == "__main__":
-    # Verifica se o receptor já está rodando
-    if not is_receptor_running():
-        print("Iniciando o receptor MQTT...")
-        if platform.system() == 'Windows':
-            # No Windows, usamos "start" para abrir uma nova janela
-            subprocess.Popen(['start', 'python', 'Frigorifico/receptor.py'], shell=True)
-        else:
-            # Em sistemas Unix (Linux/Mac), usamos "gnome-terminal" ou "xterm" para abrir um novo terminal
-            subprocess.Popen(['gnome-terminal', '--', 'python3', 'Frigorifico/receptor.py'])
-    else:
-        print("Receptor MQTT já está rodando!")
 
     # Inicia o servidor Flask na thread principal
     app.run(host='0.0.0.0', port=5000, debug=True)

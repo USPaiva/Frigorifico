@@ -4,6 +4,7 @@ body {
     background-color: #333;
     color: #fff;
 }
+
 .header {
     background-color: #444;
     padding: 5px;
@@ -15,73 +16,90 @@ body {
 .header .left {
     display: flex;
     align-items: center;
-    flex-grow: 1; /* Permite que a área da esquerda cresça para centralizar o conteúdo */
-    text-align: center; /* Centraliza o conteúdo internamente */
+    flex-grow: 1;
+    text-align: center;
 }
 
 .header .title {
     font-size: 14px;
-    margin-left: -75%; /* Espaço entre logo e título */
-    flex-grow: 1; /* Permite que o título ocupe espaço e se centralize */
+    margin-left: -75%;
+    flex-grow: 1;
 }
 
 .header img {
     height: 60px;
     width: 200px;
 }
-.header .mqtt {
-    display: flex;
-    align-items: center;
-}
-.header .mqtt span {
-    margin-left: 10px;
-}
-.header .mqtt input {
-    margin-left: 5px;
-    padding: 2px;
-    font-size: 14px;
-}
-.header .mqtt button {
-    margin-left: 10px;
-    padding: 2px 10px;
-    font-size: 14px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
+
 .content {
     display: flex;
     height: calc(100vh - 30px);
-}
-.left-panel {
-    width: 300px;
-    background-color: #222;
     padding: 10px;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-.left-panel .data div {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-}
-.left-panel .data {
-    background-color: #111;
+.controls {
+    width: 300px;
+    background-color: #222;
     padding: 20px;
-    flex-grow: 2;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
-.left-panel .data div span {
-    font-size: 20px;
+
+.controls h3 {
+    color: #ddd;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
+
+.filter-section {
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    color: #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-section label {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.filter-section input,
+.filter-section select {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #3a3a3a;
+    color: #fff;
+    font-size: 14px;
+}
+
+.filter-section button,
+.action-button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+}
+
+.filter-section button:hover,
+.action-button:hover {
+    background-color: #777;
+}
+
 .map {
     flex-grow: 1;
-    
     background-size: cover;
     background-position: center;
     position: relative;
@@ -89,15 +107,23 @@ body {
 
 .right-panel {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas com tamanhos iguais */
-    gap: 10px; /* Espaçamento entre os gráficos */
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     width: 90%;
-    height: 50%; /* altura 200px*/
+    height: 50%;
 }
+
+.right-panel canvas {
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 8px;
+}
+
 .navbar .buttons {
     display: flex;
     gap: 10px;
 }
+
 .navbar .buttons button {
     background-color: #555;
     color: white;
@@ -106,6 +132,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .navbar .buttons button:hover {
     background-color: #777;
 }

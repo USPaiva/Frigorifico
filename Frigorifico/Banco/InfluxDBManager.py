@@ -19,10 +19,10 @@ class InfluxDBManager:
 
     def parse_data(self, result):
         data = {
-            'Medicao': [],
             'Umid': [],
             'Temp': [],
-            'CO': [],
+            'Vent1': [],
+            'Vent2': []
         }
 
         for table in result:

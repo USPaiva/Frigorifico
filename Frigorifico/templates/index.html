@@ -16,29 +16,36 @@
                 <img alt="Logo" src="{{ url_for('static', filename='logos/logo_polar_beer.png') }}" />
                 <span class="title">Monitoramento Frigorifero</span>
             </div>
-            <div class="buttons">
-                <button id="connectBtn">Ligar ventilador</button>
-            </div>
         </div>
     </nav>
     <div class="content">
-        <div class="left-panel">
-            <div class="data">
-                <div>
-                    <span>Umidade (g/m³)</span>
-                    <span id="humidityValue">0.00</span>
-                </div>
-                <div>
-                    <span>Temperatura (°C)</span>
-                    <span id="temperatureValue">0.00</span>
-                </div>
+        <!-- Controles -->
+        <div class="left-panel controls">
+            <h3>Configurações</h3>
+            <div class="filter-section">
+                <label>Temperatura Máxima:</label>
+                <input type="number" id="maxTempInput" placeholder="°C">
+                <button onclick="setTemperatureLimit()">Definir</button>
             </div>
+            <div class="filter-section">
+                <label>Horário modo de pico</label>
+                <label>Ligar:</label>
+                <input type="time" id="picoOn">
+                <label>Desligar:</label>
+                <input type="time" id="picoOff">
+                <button onclick="setPicoSchedule()">Definir</button>
+            </div>
+            <button class="action-button" onclick="togglePico('on')">Ligar modo de pico</button>
+            <button class="action-button" onclick="togglePico('off')">Desligar modo de pico</button>
+            <button class="action-button" id="connectBtn">Ligar ventilador</button>
         </div>
 
         <!-- Gráficos -->
-        <div class="right-panel">
-            <canvas id="humidityChart"></canvas>
+        <div class="right-panel charts">
             <canvas id="temperatureChart"></canvas>
+            <canvas id="humidityChart"></canvas>
+            <canvas id="fanChart"></canvas>
+            <canvas id="picoChart"></canvas>
         </div>
     </div>
     

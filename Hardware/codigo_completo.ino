@@ -32,6 +32,8 @@ PubSubClient client(espClient);
 long lastMsg = 0;
 char msg[50];
 int value = 0;
+pico = false;
+vent = false;
 
 DHT dht_sensor(DHT_SENSOR_PIN, DHT_SENSOR_TYPE);
 
@@ -70,12 +72,25 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // Interprete e execute comandos recebidos
   if (command == "ligar_ventilacao") {
     Serial.println("Ventilação ligada");
-	  digitalWrite(RELAY_1_PIN, HIGH);
+    vent = true;
+    digitalWrite(RELAY_1_PIN, HIGH);
     digitalWrite(RELAY_2_PIN, HIGH);
   } else if (command == "desligar_ventilacao") {
     Serial.println("Ventilação desligada");
-  	digitalWrite(RELAY_1_PIN, LOW);
-  	digitalWrite(RELAY_2_PIN, LOW);
+    vent = false;
+    digitalWrite(RELAY_1_PIN, LOW);
+    digitalWrite(RELAY_2_PIN, LOW);
+  }
+  if (command == "on") {
+    Serial.println("Pico ligado");
+    pico=true;
+    digitalWrite(RELAY_1_PIN, HIGH);
+    digitalWrite(RELAY_2_PIN, HIGH);
+  } else if (command == "off") {
+    Serial.println("Pico desligado");
+    pico=false;
+    digitalWrite(RELAY_1_PIN, LOW);
+    digitalWrite(RELAY_2_PIN, LOW);
   }
 }
 
@@ -128,11 +143,11 @@ void loop() {
     Serial.print(temperature);
     Serial.println("°C");
 
-    if (temperature < TEMP_LOWER_THRESHOLD) {
+    if (temperature < TEMP_LOWER_THRESHOLD && pico==false && vent ==false ) {
       Serial.println("Temperatura abaixo de 15°C. Ambos os relés desligados.");
       digitalWrite(RELAY_1_PIN, LOW);
       digitalWrite(RELAY_2_PIN, LOW);
-    } else if (temperature >= TEMP_LOWER_THRESHOLD && temperature <= TEMP_UPPER_THRESHOLD) {
+    } else if (temperature >= TEMP_LOWER_THRESHOLD && temperature <= TEMP_UPPER_THRESHOLD && pico==false) {
       Serial.println("Temperatura entre 15°C e 30°C. Apenas o relé 1 ligado.");
       digitalWrite(RELAY_1_PIN, HIGH);
       digitalWrite(RELAY_2_PIN, LOW);
